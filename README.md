@@ -16,7 +16,6 @@ Adding Dependency in pom.xml
 ## Usage
 
 ```
-import foobar
 -> download project
 ->onpen it as a project in eclipse or you can directly run the *App.java*
 ```
