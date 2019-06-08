@@ -1,30 +1,31 @@
 package rai.aid;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
+import java.util.*;
 import com.google.gson.*;
-
 
 public class App {
 
-	public static void main(String[] args) throws FileNotFoundException {
+	public static void main(String[] args) throws Exception {
 
-		System.out.println("Hello World!");
 		Gson gson = new Gson();
-		JsonParser parser = new JsonParser();
-		JsonElement jsonTree = parser.parse(extra.str);
-		if (jsonTree.isJsonObject()) {
-			JsonObject jsonObject = jsonTree.getAsJsonObject();
-			JsonElement element = jsonObject.get("api_version");
-			System.out.println(element);
-		}
+//		JsonParser parser = new JsonParser();
+//		JsonElement jsonTree = parser.parse(extra.str);
+//		JsonObject jsonObject = jsonTree.getAsJsonObject();
+//		System.out.println(jsonObject.get("api_version"));
+
+		Recommendations recommendations = gson.fromJson(extra.str, Recommendations.class);
+		Body body = recommendations.getBody();
+		System.out.println(recommendations.getApiVersion());
+
+		List<Recommendation> recommendation = body.getRecommendations();
 		
-//		Gson gson = new Gson();
-//
-//	BufferedReader br = new BufferedReader(new FileReader("//home//anand//eclipse-workspace//aid//src//main//java//rai//aid//file.json"));
-//	   Recommendations recommendations = gson.fromJson(br, Recommendations.class);
-//	   System.out.println(recommendations);
+		System.out.println(recommendation.get(0));
+		
+		// read from file , fixed but some problem with json
+//		BufferedReader br = new BufferedReader(new FileReader("file.json"));
+//		Recommendations recommendations = gson.fromJson(br, Recommendations.class);
+//		System.out.println(recommendations);
 
 	}
 }
